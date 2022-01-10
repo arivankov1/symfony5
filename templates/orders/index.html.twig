@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello OrdersController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+{% if messageOK %}
+    <div class="alert alert-success">
+        {{ messageOK }}
+    </div>
+{% endif %}
+    {% if messageERROR %}
+        <div class="alert alert-danger">
+            {{ messageERROR }}
+        </div>
+    {% endif %}
+<div class="example-wrapper">
+    <h1>Orders</h1>
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+    {%  for order in orders %}
+        <tr>
+            <td> {{ order.id }} </td>
+            <td> {{ order.name }} </td>
+            <td> {{ order.address }} </td>
+            <td> {{ order.email }} </td>
+            <td> {{ order.phone}} </td>
+            <td>
+                <a href="/orders/edit/{{ order.id }}" class="btn btn-success">Edit</a>
+                <a href="/orders/del/{{ order.id }}"  class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="/orders/create">New</a>
+</div>
+{% endblock %}
